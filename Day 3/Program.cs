@@ -48,34 +48,26 @@ namespace Day_3
         {
             int totalPrio = 0;
 
-            foreach (string bp in input)
+            for(int i = 0; i < input.Length; i += 3)
             {
-                string[] compartments = new string[2];
-                compartments[0] = bp.Substring(0, bp.Length / 2);
-                compartments[1] = bp.Substring(bp.Length / 2, bp.Length / 2);
-
-                char doubleItemName;
                 int doubleItemValue = 0;
-
-                foreach (char c in compartments[0])
+                foreach (char item in input[i])
                 {
-                    if (compartments[1].Contains(c))
+                    if (input[i+1].Contains(item) && input[i + 2].Contains(item))
                     {
-                        doubleItemName = c;
-                        if (Char.IsUpper(c))
+                        if (Char.IsUpper(item))
                         {
-                            doubleItemValue = c - 38;
+                            doubleItemValue = item - 38;
                         }
                         else
                         {
-                            doubleItemValue = c - 96;
+                            doubleItemValue = item - 96;
                         }
-
                     }
                 }
                 totalPrio += doubleItemValue;
-
             }
+
             return totalPrio;
         }
     }
